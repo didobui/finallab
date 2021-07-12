@@ -1,0 +1,12 @@
+---
+- name: static route
+  hosts: Router
+  gather_facts: no
+
+  tasks:
+    - name: static_route Router
+      cisco.ios.ios_static_route:
+        prefix: "{{ item.ip }}" 
+        mask: "{{ item.netmask }}"
+        next_hop: " {{ item.nexthop }} "
+      with_items: " {{ static }}"
