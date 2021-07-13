@@ -1,0 +1,27 @@
+#image: centos:latest
+stages:
+    - deploy
+deploy:
+  stage: deploy
+  tags:
+    - finallab
+  image: centos:latest
+  script:
+    - echo "Welcome to Centos - Gitlab "
+    - yum update -y
+    - yum install -y epel-release
+    - yum install ansible -y
+    - yum install python3-pip openssh-clients -y
+    - pip3 install paramiko
+    - echo "Installed Paramiko, Ansible, Python3 "
+    - ping -c 10 10.0.0.112 && echo "Ping to router is Okay"
+    - mkdir -p ~/.ssh/ && mkdir -p /etc/ansible/host_vars
+    - cp -f * /etc/ansible/
+    - cd /etc/ansible && cp -f R1.yml R2.yml /etc/ansible/host_vars/
+    - cd /etc/ansible/
+    - sed -i 's/#host_key.*/host_key_checking = False/g' /etc/ansible/ansible.cfg
+    - ansible-galaxy collection install cisco.ios
+    - ansible-playbook -i hosts ip_int_config.yml
+    - ansible-playbook -i hosts static_route.yml
+    - ansible-playbook -i hosts ping.yml
+
