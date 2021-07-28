@@ -1,0 +1,1 @@
+curl https://sandboxdnac.cisco.com/dna/system/api/v1/auth/token \-H "Content-Type: application/json" \-H "Authorization: Basic ZGV2bmV0dXNlcjpDaXNjbzEyMyE=" -X POST -o token_api.json
