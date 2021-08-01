@@ -42,8 +42,8 @@
 
 #db-[99:101]-node.example.com
 [Router]
-R1 ansible_host=10.0.0.145
-R2 ansible_host=10.0.0.146
+R1 ansible_host=10.215.26.214
+R2 ansible_host=10.215.26.243
 [Router:vars]
 ansible_user=admin
 ansible_password=12345

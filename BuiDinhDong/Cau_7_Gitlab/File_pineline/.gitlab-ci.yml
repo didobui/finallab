@@ -14,7 +14,8 @@ deploy:
     - yum install python3-pip openssh-clients -y
     - pip3 install paramiko
     - echo "Installed Paramiko, Ansible, Python3 "
-    - ping -c 10 10.0.0.112 && echo "Ping to router is Okay"
+    - ping -c 5 10.215.26.214 && echo "Ping to router 3 is Okay"
+    - ping -c 5 10.215.26.243 && echo "Ping to router 4 is Okay"
     - mkdir -p ~/.ssh/ && mkdir -p /etc/ansible/host_vars
     - cp -f * /etc/ansible/
     - cd /etc/ansible && cp -f R1.yml R2.yml /etc/ansible/host_vars/
